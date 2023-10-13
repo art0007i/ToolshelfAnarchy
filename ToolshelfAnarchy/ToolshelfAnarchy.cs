@@ -1,20 +1,14 @@
 using HarmonyLib;
-using NeosModLoader;
-using System;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+using ResoniteModLoader;
 using FrooxEngine;
-using FrooxEngine.LogiX;
 
 namespace ToolshelfAnarchy
 {
-    public class ToolshelfAnarchy : NeosMod
+    public class ToolshelfAnarchy : ResoniteMod
     {
         public override string Name => "ToolshelfAnarchy";
         public override string Author => "art0007i";
-        public override string Version => "1.0.0";
+        public override string Version => "2.0.0";
         public override string Link => "https://github.com/art0007i/ToolshelfAnarchy/";
         public override void OnEngineInit()
         {
@@ -22,9 +16,9 @@ namespace ToolshelfAnarchy
             harmony.PatchAll();
 
         }
-        [HarmonyPatch(typeof(CommonTool))]
+        [HarmonyPatch(typeof(InteractionHandler))]
         [HarmonyPatch("ItemShelfFilter")]
-        class CommonTool_ItemShelfFilter_Patch
+        class InteractionHandler_ItemShelfFilter_Patch
         {
             public static bool Prefix(ref bool __result)
             {
